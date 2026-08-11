@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NM Studio</title>
+<title>Aura &amp; Aperture — Photography Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -125,13 +125,15 @@
     width:100%;
     height:100%;
     object-fit:cover;
+    object-position:center;
     z-index:0;
+    filter:saturate(1.15) contrast(1.08) brightness(1.02);
+    image-rendering:auto;
   }
   .hero-overlay{
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(1px);
+    background:linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.45) 100%);
     z-index:1;
   }
   .hero-content{
@@ -264,12 +266,17 @@
     width:100%;
     height:100%;
     object-fit:cover;
+    filter:saturate(1.15) contrast(1.08) brightness(1.03);
+    transition:transform .6s ease;
+  }
+  .tile:hover img{
+    transform:scale(1.04);
   }
   .tile::after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.15) 55%, rgba(0,0,0,0));
+    background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1) 55%, rgba(0,0,0,0));
   }
   .tile-caption{
     position:absolute;
@@ -406,6 +413,40 @@
   }
   .form-status.success{ color:#9fe0b3; }
   .form-status.error{ color:#f0a0a0; }
+
+  /* ---------- Fireworks celebration ---------- */
+  #fireworksCanvas{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    pointer-events:none;
+    z-index:9998;
+    opacity:0;
+    transition:opacity .4s ease;
+  }
+  #fireworksCanvas.active{ opacity:1; }
+
+  #celebrateMsg{
+    position:fixed;
+    top:14%;
+    left:50%;
+    transform:translate(-50%,-12px);
+    z-index:9999;
+    font-family:'Playfair Display', serif;
+    font-size:clamp(28px,5vw,48px);
+    color:var(--white);
+    text-shadow:0 2px 24px rgba(0,0,0,0.55);
+    text-align:center;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .5s ease, transform .5s ease;
+    white-space:nowrap;
+  }
+  #celebrateMsg.active{
+    opacity:1;
+    transform:translate(-50%,0);
+  }
 
   /* ---------- Footer ---------- */
   .site-footer{
@@ -559,7 +600,7 @@
 <main>
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
-    <img class="hero-bg" src="https://www.figma.com/api/mcp/asset/d9441453-2cc1-46ca-b3ef-64b3d76e7396.png" alt="Couple standing on a misty mountain ridge at golden hour" />
+    <img class="hero-bg" src="https://www.figma.com/api/mcp/asset/d9441453-2cc1-46ca-b3ef-64b3d76e7396.png" alt="Couple standing on a misty mountain ridge at golden hour" loading="eager" fetchpriority="high" decoding="async" />
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="eyebrow hero-eyebrow">Photography • Albums • Printing</p>
@@ -591,26 +632,26 @@
 
     <div class="gallery">
       <div class="tile tile-weddings">
-        <img src="https://www.figma.com/api/mcp/asset/0daf7aa7-fc87-49c7-adad-71f5c6d2a632.png" alt="Bride and groom walking hand in hand through a cobblestone street" />
+        <img src="https://www.figma.com/api/mcp/asset/0daf7aa7-fc87-49c7-adad-71f5c6d2a632.png" alt="Bride and groom walking hand in hand through a cobblestone street" loading="lazy" decoding="async" />
         <div class="tile-caption">
           <span class="index">01</span>
           <h3>Weddings &amp; Engagements</h3>
         </div>
       </div>
       <div class="tile tile-portraits">
-        <img src="https://www.figma.com/api/mcp/asset/40446d6a-20ac-4158-9474-4d51277a67f8.png" alt="Portrait of a woman looking to the side" />
+        <img src="https://www.figma.com/api/mcp/asset/40446d6a-20ac-4158-9474-4d51277a67f8.png" alt="Portrait of a woman looking to the side" loading="lazy" decoding="async" />
         <div class="tile-caption"><h3>Portraits</h3></div>
       </div>
       <div class="tile tile-candid">
-        <img src="https://www.figma.com/api/mcp/asset/95fac565-6bef-4534-ab65-6a4826fc2d85.png" alt="Family laughing together on a sofa" />
+        <img src="https://www.figma.com/api/mcp/asset/95fac565-6bef-4534-ab65-6a4826fc2d85.png" alt="Family laughing together on a sofa" loading="lazy" decoding="async" />
         <div class="tile-caption"><h3>Candid &amp; Family</h3></div>
       </div>
       <div class="tile tile-traditional">
-        <img src="https://www.figma.com/api/mcp/asset/fb36c66a-13c6-4ffa-8e9a-07f674e0aea2.png" alt="Traditional bridal hands holding a floral bouquet" />
+        <img src="https://www.figma.com/api/mcp/asset/fb36c66a-13c6-4ffa-8e9a-07f674e0aea2.png" alt="Traditional bridal hands holding a floral bouquet" loading="lazy" decoding="async" />
         <div class="tile-caption"><h3>Traditional Events</h3></div>
       </div>
       <div class="tile tile-baby">
-        <img src="https://www.figma.com/api/mcp/asset/2eb51574-7bf8-4476-b65e-90bcc518007c.png" alt="Newborn baby swaddled and sleeping" />
+        <img src="https://www.figma.com/api/mcp/asset/2eb51574-7bf8-4476-b65e-90bcc518007c.png" alt="Newborn baby swaddled and sleeping" loading="lazy" decoding="async" />
         <div class="tile-caption"><h3>Baby &amp; Birthdays</h3></div>
       </div>
     </div>
@@ -703,7 +744,102 @@
   </div>
 </footer>
 
+<canvas id="fireworksCanvas"></canvas>
+<div id="celebrateMsg">🎉 Booking Confirmed! 🎉</div>
+
 <script>
+  // ---------------------------------------------------------------
+  // Fireworks celebration — plays once after a successful booking
+  // ---------------------------------------------------------------
+  (function () {
+    const canvas = document.getElementById("fireworksCanvas");
+    const ctx = canvas.getContext("2d");
+    const msg = document.getElementById("celebrateMsg");
+    let particles = [];
+    let animating = false;
+    let rafId = null;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const colors = ["#f0e0ca", "#ff6b6b", "#ffd93d", "#6bcB77", "#4d96ff", "#ffffff", "#ff9de2"];
+
+    function spawnBurst(x, y) {
+      const count = 60;
+      const hue = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.2;
+        const speed = 2 + Math.random() * 4;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: hue,
+          size: 2 + Math.random() * 2,
+          gravity: 0.045,
+          decay: 0.012 + Math.random() * 0.012
+        });
+      }
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.alpha -= p.decay;
+      });
+      particles = particles.filter((p) => p.alpha > 0);
+
+      particles.forEach((p) => {
+        ctx.globalAlpha = Math.max(p.alpha, 0);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+
+      if (animating || particles.length > 0) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        cancelAnimationFrame(rafId);
+      }
+    }
+
+    window.triggerFireworks = function () {
+      canvas.classList.add("active");
+      msg.classList.add("active");
+      animating = true;
+
+      let bursts = 0;
+      const maxBursts = 6;
+      const burstInterval = setInterval(() => {
+        const x = canvas.width * (0.2 + Math.random() * 0.6);
+        const y = canvas.height * (0.2 + Math.random() * 0.35);
+        spawnBurst(x, y);
+        bursts++;
+        if (bursts >= maxBursts) {
+          clearInterval(burstInterval);
+          animating = false;
+        }
+      }, 350);
+
+      if (!rafId) tick();
+
+      setTimeout(() => {
+        canvas.classList.remove("active");
+        msg.classList.remove("active");
+      }, 3200);
+    };
+  })();
+
   // ---------------------------------------------------------------
   // Google Apps Script Web App endpoint (deployed by the user)
   // ---------------------------------------------------------------
@@ -719,6 +855,9 @@
     form.reset();
     submitBtn.disabled = false;
     submitBtn.textContent = "Book Your Function";
+    if (typeof window.triggerFireworks === "function") {
+      window.triggerFireworks();
+    }
   }
 
   function showError() {
