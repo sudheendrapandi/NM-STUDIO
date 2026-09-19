@@ -1,0 +1,64 @@
+/* =============================================================
+   NM Studio — premium dark theme
+
+   Palette (from the brief, used strategically, not equally):
+     #00308F  Deep Blue    → soft light blooms, never text
+     #0247FF  Bright Blue  → focus rings + input focus borders
+     #0989F1  Sky Blue     → small text accents, links, nav marker
+     #F2F3F5  Neutral      → headings + body text on black
+     #7BB862  Light Green  → primary buttons, success
+     #006B3D  Dark Green   → secondary buttons, pressed states
+   ============================================================= */
+
+:root{
+  color-scheme:dark;
+
+  /* Brand palette */
+  --deep-blue:#00308F;
+  --bright-blue:#0247FF;
+  --sky-blue:#0989F1;
+  --neutral:#F2F3F5;
+  --green:#7BB862;
+  --green-dark:#006B3D;
+
+  /* Surfaces: black with the faintest deep-blue undertone */
+  --bg:#030509;
+  --surface:#070b13;
+  --line:rgba(242,243,245,0.09);
+  --line-strong:rgba(242,243,245,0.17);
+
+  /* Text */
+  --text:#F2F3F5;
+  --text-muted:rgba(242,243,245,0.72);
+  --text-faint:rgba(242,243,245,0.54);
+  --on-green:#03110a;
+  --error:#ff8f8f;
+
+  /* Type */
+  --font-head:'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:'Comfortaa', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Spacing scale (4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128) */
+  --s-1:4px;
+  --s-2:8px;
+  --s-3:12px;
+  --s-4:16px;
+  --s-5:24px;
+  --s-6:32px;
+  --s-7:48px;
+  --s-8:64px;
+  --s-9:96px;
+  --s-10:128px;
+
+  /* Layout */
+  --content:1280px;
+  --gutter:clamp(20px, 5.5vw, 80px);
+  --section-y:clamp(88px, 11vw, 152px);
+
+  /* Radii: pill for actions, softer for fields, larger for surfaces */
+  --r-sm:14px;
+  --r-lg:28px;
+  --r-pill:999px;
+
+  --ease:cubic-bezier(.22,.7,.2,1);
+}
